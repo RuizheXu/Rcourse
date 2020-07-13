@@ -81,6 +81,26 @@ gapminder %>%
 gapdesc=gapminder %>% arrange(desc(country))
 gapdesc %>% filter(continent=="Asia") %>% group_by(year) %>% summarize(maxlife=max(lifeExp)) %>% ungroup()
 ```
-
-
+```{r}
+co2=read_csv("data/co2.csv")
+co2 %>% head()
+dim(co2)
+```
+```{r}
+gap_2007=gapminder %>% filter(year==2007)
+gap_2007 %>% dim()
+```
+```{r}
+lj=left_join(gap_2007,co2,by="country")
+dim(lj)
+```
+```{r}
+gap_wide=read.csv("data/gapminder_wide.csv")
+gapminder=read_csv("data/gapminder.csv")
+str(gap_wide)
+```
+```{r}
+gap_long=gap_wide %>% 
+  gather(key=obstype_year,value=obs_values,-continent,-country)
+```
 
