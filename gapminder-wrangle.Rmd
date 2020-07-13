@@ -1,0 +1,23 @@
+---
+title: "gapminder-wrangle"
+author: "Ruizhe Xu"
+date: "2020/7/13"
+output: html_document
+---
+
+```{r setup,include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Learn 'dplyr' using gapminder dataset
+```{r}
+gapminder=read_csv("data/gapminder.csv")
+head(gapminder)
+str(gapminder)
+filter(gapminder,lifeExp<29)
+filter(gapminder,country=="Mexico")
+filter(gapminder,country=="China")
+```
+
+
