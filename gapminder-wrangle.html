@@ -446,6 +446,201 @@ summary {
 ## 10 China    1997 1230075000  Asia         70.4     2289.
 ## 11 China    2002 1280400000  Asia         72.0     3119.
 ## 12 China    2007 1318683096  Asia         73.0     4959.</code></pre>
+<pre class="r"><code>filter(gapminder,country%in%c(&quot;Mexico&quot;,&quot;Peru&quot;))</code></pre>
+<pre><code>## # A tibble: 24 x 6
+##    country  year      pop continent lifeExp gdpPercap
+##    &lt;chr&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Mexico   1952 30144317 Americas     50.8     3478.
+##  2 Mexico   1957 35015548 Americas     55.2     4132.
+##  3 Mexico   1962 41121485 Americas     58.3     4582.
+##  4 Mexico   1967 47995559 Americas     60.1     5755.
+##  5 Mexico   1972 55984294 Americas     62.4     6809.
+##  6 Mexico   1977 63759976 Americas     65.0     7675.
+##  7 Mexico   1982 71640904 Americas     67.4     9611.
+##  8 Mexico   1987 80122492 Americas     69.5     8688.
+##  9 Mexico   1992 88111030 Americas     71.5     9472.
+## 10 Mexico   1997 95895146 Americas     73.7     9767.
+## # ... with 14 more rows</code></pre>
+<pre class="r"><code>filter(gapminder,country==&quot;Mexico&quot;,year==2002)</code></pre>
+<pre><code>## # A tibble: 1 x 6
+##   country  year       pop continent lifeExp gdpPercap
+##   &lt;chr&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Mexico   2002 102479927 Americas     74.9    10742.</code></pre>
+<pre class="r"><code>bl=filter(gapminder,country==&quot;Brazil&quot;,year&gt;=1987,year&lt;=2007)
+mean(bl$lifeExp)</code></pre>
+<pre><code>## [1] 69.0092</code></pre>
+<pre class="r"><code>gap1=dplyr::select(gapminder,year,country,lifeExp)
+head(gap1)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##    year country     lifeExp
+##   &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
+## 1  1952 Afghanistan    28.8
+## 2  1957 Afghanistan    30.3
+## 3  1962 Afghanistan    32.0
+## 4  1967 Afghanistan    34.0
+## 5  1972 Afghanistan    36.1
+## 6  1977 Afghanistan    38.4</code></pre>
+<pre class="r"><code>gap2=dplyr::select(gapminder,year:lifeExp)
+head(gap2)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##    year      pop continent lifeExp
+##   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
+## 1  1952  8425333 Asia         28.8
+## 2  1957  9240934 Asia         30.3
+## 3  1962 10267083 Asia         32.0
+## 4  1967 11537966 Asia         34.0
+## 5  1972 13079460 Asia         36.1
+## 6  1977 14880372 Asia         38.4</code></pre>
+<pre class="r"><code>gap3=dplyr::select(gapminder,1,2,4)
+head(gap3)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   country      year continent
+##   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;    
+## 1 Afghanistan  1952 Asia     
+## 2 Afghanistan  1957 Asia     
+## 3 Afghanistan  1962 Asia     
+## 4 Afghanistan  1967 Asia     
+## 5 Afghanistan  1972 Asia     
+## 6 Afghanistan  1977 Asia</code></pre>
+<pre class="r"><code>gap4=dplyr::select(gapminder,-continent,-lifeExp)
+head(gap4)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   country      year      pop gdpPercap
+##   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Afghanistan  1952  8425333      779.
+## 2 Afghanistan  1957  9240934      821.
+## 3 Afghanistan  1962 10267083      853.
+## 4 Afghanistan  1967 11537966      836.
+## 5 Afghanistan  1972 13079460      740.
+## 6 Afghanistan  1977 14880372      786.</code></pre>
+<pre class="r"><code>gap_cambodia=filter(gapminder,country==&quot;Cambodia&quot;)
+gap_cambodia2=dplyr::select(gap_cambodia,-continent,-lifeExp)
+head(gap_cambodia2)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   country   year     pop gdpPercap
+##   &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Cambodia  1952 4693836      368.
+## 2 Cambodia  1957 5322536      434.
+## 3 Cambodia  1962 6083619      497.
+## 4 Cambodia  1967 6960067      523.
+## 5 Cambodia  1972 7450606      422.
+## 6 Cambodia  1977 6978607      525.</code></pre>
+<pre class="r"><code>gapminder%&gt;%head(3)</code></pre>
+<pre><code>## # A tibble: 3 x 6
+##   country      year      pop continent lifeExp gdpPercap
+##   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Afghanistan  1952  8425333 Asia         28.8      779.
+## 2 Afghanistan  1957  9240934 Asia         30.3      821.
+## 3 Afghanistan  1962 10267083 Asia         32.0      853.</code></pre>
+<pre class="r"><code>gap_cambodia=gapminder %&gt;% 
+  filter(country==&quot;Cambodia&quot;) %&gt;%
+  dplyr::select(-continent,-lifeExp)</code></pre>
+<pre class="r"><code>gapminder %&gt;% mutate(gdp=pop*gdpPercap)</code></pre>
+<pre><code>## # A tibble: 1,704 x 7
+##    country      year      pop continent lifeExp gdpPercap          gdp
+##    &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+##  1 Afghanistan  1952  8425333 Asia         28.8      779.  6567086330.
+##  2 Afghanistan  1957  9240934 Asia         30.3      821.  7585448670.
+##  3 Afghanistan  1962 10267083 Asia         32.0      853.  8758855797.
+##  4 Afghanistan  1967 11537966 Asia         34.0      836.  9648014150.
+##  5 Afghanistan  1972 13079460 Asia         36.1      740.  9678553274.
+##  6 Afghanistan  1977 14880372 Asia         38.4      786. 11697659231.
+##  7 Afghanistan  1982 12881816 Asia         39.9      978. 12598563401.
+##  8 Afghanistan  1987 13867957 Asia         40.8      852. 11820990309.
+##  9 Afghanistan  1992 16317921 Asia         41.7      649. 10595901589.
+## 10 Afghanistan  1997 22227415 Asia         41.8      635. 14121995875.
+## # ... with 1,694 more rows</code></pre>
+<pre class="r"><code>gapminder %&gt;% filter(continent==&quot;Asia&quot;,year==2007) %&gt;% mutate(pop1000=pop/1000)</code></pre>
+<pre><code>## # A tibble: 33 x 7
+##    country          year        pop continent lifeExp gdpPercap  pop1000
+##    &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+##  1 Afghanistan      2007   31889923 Asia         43.8      975.   31890.
+##  2 Bahrain          2007     708573 Asia         75.6    29796.     709.
+##  3 Bangladesh       2007  150448339 Asia         64.1     1391.  150448.
+##  4 Cambodia         2007   14131858 Asia         59.7     1714.   14132.
+##  5 China            2007 1318683096 Asia         73.0     4959. 1318683.
+##  6 Hong Kong China  2007    6980412 Asia         82.2    39725.    6980.
+##  7 India            2007 1110396331 Asia         64.7     2452. 1110396.
+##  8 Indonesia        2007  223547000 Asia         70.6     3541.  223547 
+##  9 Iran             2007   69453570 Asia         71.0    11606.   69454.
+## 10 Iraq             2007   27499638 Asia         59.5     4471.   27500.
+## # ... with 23 more rows</code></pre>
+<pre class="r"><code>gapminder %&gt;% 
+  filter(year==2002) %&gt;% 
+  group_by(continent) %&gt;% 
+  mutate(cont_pop=sum(pop))</code></pre>
+<pre><code>## # A tibble: 142 x 7
+## # Groups:   continent [5]
+##    country      year       pop continent lifeExp gdpPercap   cont_pop
+##    &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+##  1 Afghanistan  2002  25268405 Asia         42.1      727. 3601802203
+##  2 Albania      2002   3508512 Europe       75.7     4604.  578223869
+##  3 Algeria      2002  31287142 Africa       71.0     5288.  833723916
+##  4 Angola       2002  10866106 Africa       41.0     2773.  833723916
+##  5 Argentina    2002  38331121 Americas     74.3     8798.  849772762
+##  6 Australia    2002  19546792 Oceania      80.4    30688.   23454829
+##  7 Austria      2002   8148312 Europe       79.0    32418.  578223869
+##  8 Bahrain      2002    656397 Asia         74.8    23404. 3601802203
+##  9 Bangladesh   2002 135656790 Asia         62.0     1136. 3601802203
+## 10 Belgium      2002  10311970 Europe       78.3    30486.  578223869
+## # ... with 132 more rows</code></pre>
+<pre class="r"><code>gapminder %&gt;% 
+  group_by(continent,year) %&gt;% 
+  summarize(cont_pop=sum(pop))</code></pre>
+<pre><code>## `summarise()` regrouping output by &#39;continent&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 60 x 3
+## # Groups:   continent [5]
+##    continent  year  cont_pop
+##    &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Africa     1952 237640501
+##  2 Africa     1957 264837738
+##  3 Africa     1962 296516865
+##  4 Africa     1967 335289489
+##  5 Africa     1972 379879541
+##  6 Africa     1977 433061021
+##  7 Africa     1982 499348587
+##  8 Africa     1987 574834110
+##  9 Africa     1992 659081517
+## 10 Africa     1997 743832984
+## # ... with 50 more rows</code></pre>
+<pre class="r"><code>gapminder %&gt;% 
+  group_by(continent,year) %&gt;% 
+  summarize(cont_pop=sum(pop)) %&gt;% 
+  arrange(year)</code></pre>
+<pre><code>## `summarise()` regrouping output by &#39;continent&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 60 x 3
+## # Groups:   continent [5]
+##    continent  year    cont_pop
+##    &lt;chr&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Africa     1952  237640501 
+##  2 Americas   1952  345152446 
+##  3 Asia       1952 1395357352.
+##  4 Europe     1952  418120846 
+##  5 Oceania    1952   10686006 
+##  6 Africa     1957  264837738 
+##  7 Americas   1957  386953916 
+##  8 Asia       1957 1562780599 
+##  9 Europe     1957  437890351 
+## 10 Oceania    1957   11941976 
+## # ... with 50 more rows</code></pre>
+<pre class="r"><code>gapdesc=gapminder %&gt;% arrange(desc(country))
+gapdesc %&gt;% filter(continent==&quot;Asia&quot;) %&gt;% group_by(year) %&gt;% summarize(maxlife=max(lifeExp)) %&gt;% ungroup()</code></pre>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 12 x 2
+##     year maxlife
+##    &lt;dbl&gt;   &lt;dbl&gt;
+##  1  1952    65.4
+##  2  1957    67.8
+##  3  1962    69.4
+##  4  1967    71.4
+##  5  1972    73.4
+##  6  1977    75.4
+##  7  1982    77.1
+##  8  1987    78.7
+##  9  1992    79.4
+## 10  1997    80.7
+## 11  2002    82  
+## 12  2007    82.6</code></pre>
 </div>
 
 
