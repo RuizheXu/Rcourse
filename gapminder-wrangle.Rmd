@@ -101,6 +101,16 @@ str(gap_wide)
 ```
 ```{r}
 gap_long=gap_wide %>% 
-  gather(key=obstype_year,value=obs_values,-continent,-country)
+  gather(key=obstype_year,value=obs_values,-continent,-country) %>%
+  separate(obstype_year,into=c("obs_type","year"),sep="_",convert=TRUE)
+```
+```{r}
+library(ggrepel)
+gapminder %>% 
+  filter(year==2007) %>% 
+  ggplot(aes(x=gdpPercap,y=lifeExp))+
+  geom_point(color="red")+scale_x_log10()+
+  geom_text_repel(aes(label=country),size=2)+
+  theme_classic()
 ```
 
