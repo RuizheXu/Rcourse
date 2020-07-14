@@ -1,0 +1,568 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Homework 2},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Homework 2}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+The data set calif\_penn\_2011.csv contains information about the
+housing stock of California and Pennsylvania, as of 2011. Information as
+aggregated into ``Census tracts'', geographic regions of a few thousand
+people which are supposed to be fairly homogeneous economically and
+socially.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \emph{Loading and cleaning}
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Load the data into a dataframe called \texttt{ca\_pa}.
+  \end{enumerate}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ca_pa=}\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/calif_penn_2011.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+b. How many rows and columns does the dataframe have?
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(ca_pa)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11275    34
+\end{verbatim}
+
+\begin{verbatim}
+c. Run this command, and explain, in words, what this does:
+answer:求每个变量中，观测值为na的个数
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{colSums}\NormalTok{(}\KeywordTok{apply}\NormalTok{(ca_pa,}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{),is.na))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                           X                     GEO.id2 
+##                           0                           0 
+##                     STATEFP                    COUNTYFP 
+##                           0                           0 
+##                     TRACTCE                  POPULATION 
+##                           0                           0 
+##                    LATITUDE                   LONGITUDE 
+##                           0                           0 
+##           GEO.display.label          Median_house_value 
+##                           0                         599 
+##                 Total_units                Vacant_units 
+##                           0                           0 
+##                Median_rooms  Mean_household_size_owners 
+##                         157                         215 
+## Mean_household_size_renters         Built_2005_or_later 
+##                         152                          98 
+##          Built_2000_to_2004                 Built_1990s 
+##                          98                          98 
+##                 Built_1980s                 Built_1970s 
+##                          98                          98 
+##                 Built_1960s                 Built_1950s 
+##                          98                          98 
+##                 Built_1940s       Built_1939_or_earlier 
+##                          98                          98 
+##                  Bedrooms_0                  Bedrooms_1 
+##                          98                          98 
+##                  Bedrooms_2                  Bedrooms_3 
+##                          98                          98 
+##                  Bedrooms_4          Bedrooms_5_or_more 
+##                          98                          98 
+##                      Owners                     Renters 
+##                         100                         100 
+##     Median_household_income       Mean_household_income 
+##                         115                         126
+\end{verbatim}
+
+\begin{verbatim}
+d. The function `na.omit()` takes a dataframe and returns a new dataframe, omitting any row containing an NA value.  Use it to purge the data set of rows with incomplete data.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ca_pa=}\KeywordTok{na.omit}\NormalTok{(ca_pa)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+e. How many rows did this eliminate?
+answer:670
+f. Are your answers in (c) and (e) compatible? Explain.
+answer:不一样，因为（c)中同一列可能会有不止一个na，而（d)中只要一列中有一个na就要被删去
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \emph{This Very New House}
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    The variable \texttt{Built\_2005\_or\_later} indicates the
+    percentage of houses in each Census tract built since 2005. Plot
+    median house prices against this variable.
+  \end{enumerate}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(ca_pa}\OperatorTok{$}\NormalTok{Median_house_value,ca_pa}\OperatorTok{$}\NormalTok{Built_}\DecValTok{2005}\NormalTok{_or_later)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Homework-02_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{verbatim}
+b. Make a new plot, or pair of plots, which breaks this out by state.  Note that the state is recorded in the `STATEFP` variable, with California being state 6 and Pennsylvania state 42.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{ca_pa)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Median_house_value,}\DataTypeTok{y=}\NormalTok{Built_}\DecValTok{2005}\NormalTok{_or_later))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{STATEFP)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Homework-02_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \emph{Nobody Home}\\
+  The vacancy rate is the fraction of housing units which are not
+  occupied. The dataframe contains columns giving the total number of
+  housing units for each Census tract, and the number of vacant housing
+  units.
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Add a new column to the dataframe which contains the vacancy rate.
+    What are the minimum, maximum, mean, and median vacancy rates?
+  \end{enumerate}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ca_pa=ca_pa }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{vacancy=}\NormalTok{Vacant_units}\OperatorTok{/}\NormalTok{Total_units)}
+\KeywordTok{summary}\NormalTok{(ca_pa}\OperatorTok{$}\NormalTok{vacancy)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.03846 0.06767 0.08889 0.10921 0.96531
+\end{verbatim}
+
+\begin{verbatim}
+b. Plot the vacancy rate against median house value.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{ca_pa)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Median_house_value,}\DataTypeTok{y=}\NormalTok{vacancy))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Homework-02_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{verbatim}
+c. Plot vacancy rate against median house value separately for California and for Pennsylvania.  Is there a difference?
+answer:在宾夕法尼亚中，住房空置率随着房价的上升而明显减小；而加州没有这么明显的趋势
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data=}\NormalTok{ca_pa)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Median_house_value,}\DataTypeTok{y=}\NormalTok{vacancy))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{STATEFP)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Homework-02_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  The column \texttt{COUNTYFP} contains a numerical code for counties
+  within each state. We are interested in Alameda County (county 1 in
+  California), Santa Clara (county 85 in California), and Allegheny
+  County (county 3 in Pennsylvania).
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Explain what the block of code at the end of this question is
+    supposed to accomplish, and how it does it.
+    answer:为了求加州编号为1的县中的median\_house\_value的中位数。方法：先将加州编号为1的县的列数选出，然后将这些列中的median\_house\_value构成一个新的数组，再求这个数组的中位数。
+  \item
+    Give a single line of R which gives the same final answer as the
+    block of code. Note: there are at least two ways to do this; you
+    just have to find one.
+  \end{enumerate}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ca_pa }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(COUNTYFP}\OperatorTok{==}\DecValTok{1}\NormalTok{,STATEFP}\OperatorTok{==}\DecValTok{6}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\KeywordTok{median}\NormalTok{(Median_house_value))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   median(Median_house_value)
+## 1                     474050
+\end{verbatim}
+
+\begin{verbatim}
+c. For Alameda, Santa Clara and Allegheny Counties, what were the average percentages of housing built since 2005?
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ca_pa }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(COUNTYFP}\OperatorTok{==}\DecValTok{1}\NormalTok{,STATEFP}\OperatorTok{==}\DecValTok{6}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Alameda_pr=}\NormalTok{Built_}\DecValTok{2005}\NormalTok{_or_later}\OperatorTok{/}\NormalTok{Total_units) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\KeywordTok{mean}\NormalTok{(Alameda_pr))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   mean(Alameda_pr)
+## 1      0.002583202
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ca_pa }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(COUNTYFP}\OperatorTok{==}\DecValTok{85}\NormalTok{,STATEFP}\OperatorTok{==}\DecValTok{6}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Santa_Clara_pr=}\NormalTok{Built_}\DecValTok{2005}\NormalTok{_or_later}\OperatorTok{/}\NormalTok{Total_units) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\KeywordTok{mean}\NormalTok{(Santa_Clara_pr))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   mean(Santa_Clara_pr)
+## 1          0.001943991
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ca_pa }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(COUNTYFP}\OperatorTok{==}\DecValTok{3}\NormalTok{,STATEFP}\OperatorTok{==}\DecValTok{42}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{Allegheny_pr=}\NormalTok{Built_}\DecValTok{2005}\NormalTok{_or_later}\OperatorTok{/}\NormalTok{Total_units) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\KeywordTok{mean}\NormalTok{(Allegheny_pr))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   mean(Allegheny_pr)
+## 1        0.001185988
+\end{verbatim}
+
+\begin{verbatim}
+d. The `cor` function calculates the correlation coefficient between two variables.  What is the correlation between median house value and the percent of housing built since 2005 in (i) the whole data, (ii) all of California, (iii) all of Pennsylvania, (iv) Alameda County, (v) Santa Clara County and (vi) Allegheny County?
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ca_pa }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{pr=}\NormalTok{Built_}\DecValTok{2005}\NormalTok{_or_later}\OperatorTok{/}\NormalTok{Total_units) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\KeywordTok{cor}\NormalTok{(pr,Median_house_value))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   cor(pr, Median_house_value)
+## 1                -0.008761551
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ca_pa }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{pr=}\NormalTok{Built_}\DecValTok{2005}\NormalTok{_or_later}\OperatorTok{/}\NormalTok{Total_units) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(STATEFP}\OperatorTok{==}\DecValTok{6}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\KeywordTok{cor}\NormalTok{(pr,Median_house_value))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   cor(pr, Median_house_value)
+## 1                 -0.06240432
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ca_pa }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{pr=}\NormalTok{Built_}\DecValTok{2005}\NormalTok{_or_later}\OperatorTok{/}\NormalTok{Total_units) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(STATEFP}\OperatorTok{==}\DecValTok{42}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\KeywordTok{cor}\NormalTok{(pr,Median_house_value))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   cor(pr, Median_house_value)
+## 1                   0.1980093
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ca_pa }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{pr=}\NormalTok{Built_}\DecValTok{2005}\NormalTok{_or_later}\OperatorTok{/}\NormalTok{Total_units) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(STATEFP}\OperatorTok{==}\DecValTok{6}\NormalTok{,COUNTYFP}\OperatorTok{==}\DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\KeywordTok{cor}\NormalTok{(pr,Median_house_value))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   cor(pr, Median_house_value)
+## 1                -0.009840453
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ca_pa }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{pr=}\NormalTok{Built_}\DecValTok{2005}\NormalTok{_or_later}\OperatorTok{/}\NormalTok{Total_units) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(STATEFP}\OperatorTok{==}\DecValTok{6}\NormalTok{,COUNTYFP}\OperatorTok{==}\DecValTok{85}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\KeywordTok{cor}\NormalTok{(pr,Median_house_value))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   cor(pr, Median_house_value)
+## 1                  -0.1732909
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ca_pa }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{pr=}\NormalTok{Built_}\DecValTok{2005}\NormalTok{_or_later}\OperatorTok{/}\NormalTok{Total_units) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(STATEFP}\OperatorTok{==}\DecValTok{42}\NormalTok{,COUNTYFP}\OperatorTok{==}\DecValTok{3}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarise}\NormalTok{(}\KeywordTok{cor}\NormalTok{(pr,Median_house_value))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   cor(pr, Median_house_value)
+## 1                  0.04878986
+\end{verbatim}
+
+\begin{verbatim}
+e. Make three plots, showing median house values against median income, for Alameda, Santa Clara, and Allegheny Counties.  (If you can fit the information into one plot, clearly distinguishing the three counties, that's OK too.)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{acca <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (tract }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(ca_pa)) \{}
+  \ControlFlowTok{if}\NormalTok{ (ca_pa}\OperatorTok{$}\NormalTok{STATEFP[tract] }\OperatorTok{==}\StringTok{ }\DecValTok{6}\NormalTok{) \{}
+    \ControlFlowTok{if}\NormalTok{ (ca_pa}\OperatorTok{$}\NormalTok{COUNTYFP[tract] }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{) \{}
+\NormalTok{      acca <-}\StringTok{ }\KeywordTok{c}\NormalTok{(acca, tract)}
+\NormalTok{    \}}
+\NormalTok{  \}}
+\NormalTok{\}}
+\NormalTok{accamhv <-}\StringTok{ }\KeywordTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (tract }\ControlFlowTok{in}\NormalTok{ acca) \{}
+\NormalTok{  accamhv <-}\StringTok{ }\KeywordTok{c}\NormalTok{(accamhv, ca_pa[tract,}\DecValTok{10}\NormalTok{])}
+\NormalTok{\}}
+\KeywordTok{median}\NormalTok{(accamhv)}
+\end{Highlighting}
+\end{Shaded}
+
+MB.Ch1.11. Run the following code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gender <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"female"}\NormalTok{, }\DecValTok{91}\NormalTok{), }\KeywordTok{rep}\NormalTok{(}\StringTok{"male"}\NormalTok{, }\DecValTok{92}\NormalTok{)))}
+\KeywordTok{table}\NormalTok{(gender)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## gender
+## female   male 
+##     91     92
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gender <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(gender, }\DataTypeTok{levels=}\KeywordTok{c}\NormalTok{(}\StringTok{"male"}\NormalTok{, }\StringTok{"female"}\NormalTok{))}
+\KeywordTok{table}\NormalTok{(gender)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## gender
+##   male female 
+##     92     91
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gender <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(gender, }\DataTypeTok{levels=}\KeywordTok{c}\NormalTok{(}\StringTok{"Male"}\NormalTok{, }\StringTok{"female"}\NormalTok{))}
+\CommentTok{# Note the mistake: "Male" should be "male"}
+\KeywordTok{table}\NormalTok{(gender)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## gender
+##   Male female 
+##      0     91
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(gender, }\DataTypeTok{exclude=}\OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## gender
+##   Male female   <NA> 
+##      0     91     92
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rm}\NormalTok{(gender)  }\CommentTok{# Remove gender}
+\end{Highlighting}
+\end{Shaded}
+
+Explain the output from the successive uses of table().
+
+MB.Ch1.12. Write a function that calculates the proportion of values in
+a vector x that exceed some value cutoff.
+
+\begin{enumerate}
+\def\labelenumi{(\alph{enumi})}
+\item
+  Use the sequence of numbers 1, 2, . . . , 100 to check that this
+  function gives the result that is expected.
+\item
+  Obtain the vector ex01.36 from the Devore6 (or Devore7) package. These
+  data give the times required for individuals to escape from an oil
+  platform during a drill. Use dotplot() to show the distribution of
+  times. Calculate the proportion of escape times that exceed 7 minutes.
+\end{enumerate}
+
+MB.Ch1.18. The Rabbit data frame in the MASS library contains blood
+pressure change measurements on five rabbits (labeled as R1, R2, . . .
+,R5) under various control and treatment conditions. Read the help file
+for more information. Use the unstack() function (three times) to
+convert Rabbit to the following form:
+
+Treatment Dose R1 R2 R3 R4 R5
+
+1 Control 6.25 0.50 1.00 0.75 1.25 1.5
+
+2 Control 12.50 4.50 1.25 3.00 1.50 1.5
+
+\ldots.
+
+\end{document}
