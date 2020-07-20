@@ -16,11 +16,13 @@ library(tidyverse)
 ## 数据的基本处理
 
 首先将体检数据导入进R，体检数据依次包含：性别、年龄、体重、身高、是否吸烟、是否喝酒、葡萄糖、收缩压、舒张压、甘油三脂、高密度脂蛋白胆固醇与是否患代谢综合症。
+
 ```{r}
 phy_test=read_csv("data/phy_test.csv")
 head(phy_test)
 ```
 将数据中的Yes与No的选项换成TRUE与FALSE的逻辑值，同时计算BMI值=体重(Kg)/(身高(m)*身高(m))
+
 ```{r}
 phy_test$smoke[which(phy_test$smoke=="Yes")]=TRUE
 phy_test$smoke[which(phy_test$smoke=="No")]=FALSE
@@ -37,7 +39,9 @@ phy_test=phy_test %>% mutate(BMI=weight/(height*height))
 
 
 ## 代谢综合症患者的特折
+
 根据数据的总结与可视化可知，患有代谢综合症的患者一般来说都具有超重、高血糖、高血压、高甘油三酯与低高密度脂蛋白胆固醇等特征
+
 ```{r}
 phy_test %>% group_by(whether_sick) %>%
   summarise(mean(BMI)) %>% ungroup()
@@ -76,8 +80,11 @@ ggplot(data = phy_test)+
   geom_smooth(aes(x=age,y=HDL_C,color=whether_sick))+
   labs(title = "高密度脂蛋白胆固醇")
 ```
+
 ## 代谢综合症与不良生活习惯之间的关系
+
 由下列的分析与数据可视化知，由抽烟习惯的人一般具有超重、高血糖、高血压、高甘油三酯与低高密度脂蛋白胆固醇这些特征，因此抽烟的人会有更大的概率换代谢综合症。
+
 ```{r}
 phy_test %>% group_by(smoke) %>%
   summarise(mean(BMI)) %>% ungroup()
@@ -116,7 +123,9 @@ ggplot(data = phy_test)+
   geom_smooth(aes(x=age,y=HDL_C,color=smoke))+
   labs(title = "高密度脂蛋白胆固醇")
 ```
+
 由下列的分析知，由饮酒习惯的人一般也都具有具有超重、高血糖、高血压、高甘油三酯与低高密度脂蛋白胆固醇这些特征，因此饮酒的人会得代谢综合症得概率更大一些
+
 ```{r}
 phy_test %>% group_by(drunk) %>%
   summarise(mean(BMI)) %>% ungroup()
@@ -155,14 +164,34 @@ ggplot(data = phy_test)+
   geom_smooth(aes(x=age,y=HDL_C,color=drunk))+
   labs(title = "高密度脂蛋白胆固醇")
 ```
+
 ## 简单研究一下收缩压与舒张压之间的回归
-发现线性回归的拟合效果就非常不错
+
+先以收缩压为解释变量，舒张压为被解释变量进行线性回归
+
 ```{r}
 lm(data = phy_test,sbp~dbp)
+```
+
+然后自己写一个求样本均方误差的函数mse，然后用nlm函数去拟合幂函数的回归形式
+```{r}
+mse=function(x){
+  a=phy_test$sbp
+  b=phy_test$dbp
+  return(mean((a-x[1]-x[2]*b^x[3])^2))
+}
+nlm(mse,c(27,1,1.1))
+```
+
+
+将两种回归形式的图做出，蓝色的是线性回归，红色的是非线性回归，发现此处线性回归与非线性回归相差不大。
+```{r}
 ggplot(data = phy_test)+
   geom_point(aes(x=dbp,y=sbp))+
-  geom_smooth(aes(x=dbp,y=sbp))+
-  geom_line(aes(x=dbp,y=27.6+1.192*dbp,col='red'))+
+  geom_line(aes(x=dbp,y=27.6+1.192*dbp),col='blue')+
+  geom_line(aes(x=dbp,y=42.5+0.414*dbp^1.2),col='red')+
   labs(title = "收缩压与舒张压的关系")
 ```
+
+
 
